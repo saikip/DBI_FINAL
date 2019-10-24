@@ -1,0 +1,43 @@
+1. Table: mytable, data: tpch/mytable.tbl
+DROP TABLE mytable;
+CREATE TABLE mytable (m_key INTEGER, m_d DOUBLE, m_s STRING) AS HEAP;
+INSERT tpch/mytable.tbl INTO mytable;
+SET OUTPUT STDOUT;
+SELECT m.m_key, m.m_s, m.m_d FROM mytable AS m;
+SELECT m.m_key, m.m_s, m.m_d FROM mytable AS m WHERE (m.m_s = 'Ruchika') AND (m.m_key = 4);
+
+
+BEGIN
+customer
+customer.tbl
+c_custkey Int
+c_name String
+c_address String
+c_nationkey Int
+c_phone String
+c_acctbal Double
+c_mktsegment String
+c_comment String
+END
+
+
+2. Table: partsupp, data: tpch/partsupp.tbl
+DROP TABLE partsupp;
+CREATE TABLE partsupp (ps_partkey INTEGER, ps_suppkey INTEGER, ps_availqty INTEGER, ps_supplycost DOUBLE, ps_comment STRING) AS HEAP;
+INSERT tpch/partsupp.tbl INTO partsupp;
+SET OUTPUT STDOUT;
+SELECT ps.ps_partkey, ps.ps_suppkey, ps.ps_availqty 
+FROM partsupp AS ps 
+WHERE (ps.ps_partkey < 100) AND (ps.ps_suppkey < 50);
+
+2. Table: customer, data: tpch/customer.tbl
+DROP TABLE partsupp;
+CREATE TABLE partsupp (c_custkey INTEGER, c_name INTEGER, c_address INTEGER, c_nationkey DOUBLE, ps_comment STRING) AS HEAP;
+
+
+
+SELECT l.l_orderkey, l.l_partkey, l.l_suppkey
+FROM lineitem AS l
+WHERE (l.l_returnflag = 'R') AND 
+	  (l.l_discount < 0.04 OR l.l_shipmode = 'MAIL') AND
+	  (l.l_orderkey > 5000) AND (l.l_orderkey < 6000);

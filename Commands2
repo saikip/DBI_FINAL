@@ -1,0 +1,34 @@
+
+6. Table: nation, data: tpch/nation.tbl
+DROP TABLE nation;
+
+CREATE TABLE nation (n_nationkey INTEGER, n_name STRING, n_regionkey INTEGER, n_comment STRING) AS HEAP;
+
+INSERT tpch/nation.tbl INTO nation;
+
+SET OUTPUT STDOUT;
+
+
+7. Table: orders, data: tpch/orders.tbl
+DROP TABLE orders;
+
+CREATE TABLE orders (o_orderkey INTEGER, o_custkey INTEGER, o_orderstatus STRING, o_totalprice DOUBLE,o_orderdate STRING, o_orderpriority STRING, o_clerk STRING, o_shippriority INTEGER, o_comment STRING) AS HEAP;
+
+INSERT tpch/orders.tbl INTO orders;
+
+SET OUTPUT STDOUT;
+
+8. Table: lineitem, data: tpch/lineitem.tbl
+DROP TABLE lineitem;
+
+CREATE TABLE lineitem (l_orderkey INTEGER, l_partkey INTEGER, l_suppkey INTEGER, l_linenumber INTEGER, l_quantity DOUBLE, l_extendedprice DOUBLE, l_discount DOUBLE, l_tax DOUBLE, l_returnflag STRING, l_linestatus STRING, l_shipdate STRING, l_commitdate STRING, l_receiptdate STRING, l_shipinstruct STRING, l_shipmode STRING, l_comment STRING) AS HEAP;
+
+INSERT tpch/lineitem.tbl INTO lineitem;
+
+SET OUTPUT STDOUT;
+
+SELECT l.l_orderkey, l.l_partkey, l.l_suppkey
+FROM lineitem AS l
+WHERE (l.l_returnflag = 'R') AND 
+	  (l.l_discount < 0.04 OR l.l_shipmode = 'MAIL') AND
+	  (l.l_orderkey > 5000) AND (l.l_orderkey < 6000);
