@@ -1,8 +1,8 @@
 ## **Final Submission**
 
 ## **Group Info**
-Priyam Saikia (UFID 9414 5292)
-Ruchika Mishra (UFID 9137 1418)
+Priyam Saikia 
+Ruchika Mishra
 
 ## **Problem**
 Create, Insert, Run Query and Drop new tables. Run SQL queries in existing tables.
